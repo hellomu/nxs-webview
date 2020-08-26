@@ -15,10 +15,12 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue'
+import { Button } from 'vant';
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    vanButton: Button
   }
 }
 </script>

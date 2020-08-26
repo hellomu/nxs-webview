@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vant, { Locale } from 'vant'
-import 'vant/lib/index.css'
+import Vant from 'vant'
+import '@/assets/less/vant.less'
 
 Vue.use(Vant)
