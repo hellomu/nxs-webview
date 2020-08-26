@@ -7,6 +7,12 @@ import FastClick from 'fastclick'
 // import './plugins/vant.js' // 按需加载，plugins里的vant.js暂不引入，如果要全量加载，则放开
 import '@/assets/less/vant.less'
 
+import Vue from 'vue';
+import { Dialog } from 'vant';
+
+// 全局注册
+Vue.use(Dialog);
+
 // 解决移动端点击延迟300ms的问题
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {

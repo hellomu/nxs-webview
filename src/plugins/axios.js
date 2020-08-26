@@ -2,6 +2,7 @@
 
 import Vue from 'vue';
 import axios from "axios";
+import { Dialog } from 'vant';
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -19,6 +20,12 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
+    if(config.params) {
+      config.params.userId = '123234'
+    }
+    if(config.data) {
+      config.data.userId = '123234'
+    }
     return config;
   },
   function(error) {
@@ -34,6 +41,20 @@ _axios.interceptors.response.use(
     return response;
   },
   function(error) {
+    if(error.response) {
+      Dialog.confirm({
+        // title: '标题',
+        message: '网络异常，稍后重试',
+      })
+        .then(() => {
+          // on confirm
+          Dialog.close()
+        })
+        .catch(() => {
+          // on cancel
+          Dialog.close()
+        });
+    }
     // Do something with response error
     return Promise.reject(error);
   }
