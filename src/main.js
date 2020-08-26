@@ -6,8 +6,6 @@ import store from './store'
 import FastClick from 'fastclick'
 // import './plugins/vant.js' // 按需加载，plugins里的vant.js暂不引入，如果要全量加载，则放开
 import '@/assets/less/vant.less'
-
-import Vue from 'vue';
 import { Dialog } from 'vant';
 
 // 全局注册
