@@ -13,7 +13,7 @@
                         <span class="span-strong">可使用</span>
                     </template>
                     <template v-else>
-                        <van-button round type="primary" size="small">现 在 就 抢</van-button>
+                        <van-button round type="primary" size="small" @click="onClick(data)" :disabled="loading" :loading="loading" loading-text="正在抢...."> 现 在 就 抢 </van-button>
                     </template>
                 </div>
             </div>
@@ -45,6 +45,16 @@ export default {
     data() {
         return {
             activeNames: [],
+            loading: false
+        }
+    },
+    methods: {
+        onClick(data) {
+            this.loading = true;
+            setTimeout(() => {
+                this.loading = false;
+                this.$emit('onSuccess', data)
+            }, 500)
         }
     }
 }
@@ -65,7 +75,7 @@ export default {
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
-            align-items: center;
+            align-items:flex-end;
             .ticket-denomination {
                 > span {
                     font-size: @font-size-xd;

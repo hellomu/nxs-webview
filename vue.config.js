@@ -1,4 +1,5 @@
 const path = require('path')
+const mockdata = require('./mock/list.json');
 module.exports = {
   pluginOptions: {
     'style-resources-loader': {
@@ -9,6 +10,12 @@ module.exports = {
     }
   },
   devServer: {
-    host:"0.0.0.0"
+    host:"0.0.0.0",
+    before(app){
+      console.log('app是什么', app)
+      app.get('/goods/list',(req,res,next)=>{
+        res.json(mockdata);
+      })
+    }
   }
 }

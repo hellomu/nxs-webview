@@ -2,18 +2,18 @@
     <div id="tickets">
         <div class="layout">
             <div class="logo">
-                <img class="common-position-h-v-mid" src="../assets/images/logo-square.png" alt="">
+                <img class="common-position-h-v-mid" src="../../assets/images/logo-square.png" alt="">
             </div>
             <div class="list">
                 <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-                <van-list
-                    v-model="loading"
-                    :finished="finished"
-                    finished-text="没有更多了"
-                    @load="onLoad"
-                >
-                    <TheTicket v-for="item in records" :key="item.id" :data="item"></TheTicket>
-                </van-list>
+                    <van-list
+                        v-model="loading"
+                        :finished="finished"
+                        finished-text="没有更多了"
+                        @load="onLoad"
+                    >
+                        <TheTicket v-for="item in records" :key="item.id" :data="item" @onSuccess="onSuccess"></TheTicket>
+                    </van-list>
                 </van-pull-refresh>
             </div>
         </div>
@@ -21,18 +21,9 @@
 </template>
 
 <script>
-import TheTicket from '@/components/TheTicket';
+import TheTicket from './TheTicket';
 
-export default {
-    components: {
-        TheTicket
-    },
-    data() {
-        return {
-            refreshing: false,
-            loading: false,
-            finished: true,
-            records: [
+const records = [
                 {
                     id: 0,
                     name: '通用红包',
@@ -52,14 +43,46 @@ export default {
                     detail: ''
                 }
             ]
+
+export default {
+    components: {
+        TheTicket
+    },
+    data() {
+        return {
+            refreshing: false,
+            loading: false,
+            finished: true,
+            records,
         }
     },
     methods: {
         onRefresh() {
-
+            // 清空列表数据
+            this.finished = false;
+            this.records = []
+            // 重新加载数据
+            this.onLoad();
         },
         onLoad() {
-
+            // 将 loading 设置为 true，表示处于加载状态
+            this.loading = true;
+            this.finished = false;
+            setTimeout(() => {
+                this.records = records;
+                this.refreshing = false;
+                this.loading = false;
+                this.finished = true;
+            }, 500)
+            
+        },
+        onSuccess(data) {
+            let {id} = data;
+            this.records.map(item => {
+                if(item.id === id) {
+                    item.state = 1;
+                }
+            })
         }
     }
 }

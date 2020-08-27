@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Tickets from '../views/Tickets.vue'
+import Tickets from '../views/Tickets/index.vue'
 
 Vue.use(VueRouter)
 
