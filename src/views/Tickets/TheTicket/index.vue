@@ -9,12 +9,12 @@
                     <span class="span-strong">{{data.denomination}}元</span> <span>红包</span>
                 </div>
                 <div class="ticket-state">
-                    <template v-if="data.state">
+                    <!-- <template v-if="data.state">
                         <span class="span-strong">可使用</span>
                     </template>
-                    <template v-else>
-                        <van-button round type="primary" size="small" @click="onClick(data)" :disabled="loading" :loading="loading" loading-text="正在抢...."> 现 在 就 抢 </van-button>
-                    </template>
+                    <template v-else> -->
+                        <van-button round type="primary" size="small" @click="onClick(data)" :disabled="loading" :loading="loading" loading-text="正在领取...."> 领取到卡包 </van-button>
+                    <!-- </template> -->
                 </div>
             </div>
             <div class="ticket-time">
@@ -49,12 +49,9 @@ export default {
         }
     },
     methods: {
-        onClick(data) {
-            this.loading = true;
-            setTimeout(() => {
-                this.loading = false;
-                this.$emit('onSuccess', data)
-            }, 500)
+        onClick() {
+            // window.open(`https://render.alipay.com/p/s/mygrace/ndetail.html?__webview_options__=sms%3DYES%26pd%3DNO&type=VOUCHER&id=${this.data.voucherId}`)
+            window.open(`https://render.alipay.com/p/s/i/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D20000067%26url%3Dhttps%253A%252F%252Frender.alipay.com%252Fp%252Fs%252Fmygrace%252Fndetail.html%253F__webview_options__%253Dsms%25253DYES%252526pd%25253DNO%2526type%253DVOUCHER%2526id%253D${this.data.voucherId}`)
         }
     }
 }

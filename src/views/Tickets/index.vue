@@ -95,6 +95,7 @@ export default {
 
 <style lang="less" scoped>
 #tickets {
+    padding-top: 30px;
     flex: 1;
     // padding: 0 10px;
     .layout {
@@ -103,7 +104,7 @@ export default {
         height: 100%;
         background: @color-background;
         border-radius: 30px 30px 0 0;
-        padding-top: 40px;
+        padding-top: 30px;
         .logo {
             width: 60px;
             height: 60px;
