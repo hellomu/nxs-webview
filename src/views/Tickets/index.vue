@@ -12,7 +12,7 @@
                         finished-text="没有更多了"
                         @load="onLoad"
                     >
-                        <TheTicket v-for="item in records" :key="item.id" :data="item" @onSuccess="onSuccess"></TheTicket>
+                        <TheTicket v-for="(item, i) in records" :key="i" :data="item" @onSuccess="onSuccess"></TheTicket>
                     </van-list>
                 </van-pull-refresh>
             </div>
@@ -22,27 +22,7 @@
 
 <script>
 import TheTicket from './TheTicket';
-
-const records = [
-                {
-                    id: 0,
-                    name: '通用红包',
-                    denomination: '200',
-                    state: 1,
-                    start: '2018.06.10 00:00',
-                    end: '2020.08.12 23:00',
-                    detail: '1.少时诵诗书所所所所所所所所所所所所所所所；2.哒哒哒哒哒哒多多多多'
-                },
-                {
-                    id: 1,
-                    name: '通用红包',
-                    denomination: '400',
-                    state: 0,
-                    start: '2018.06.10 00:00',
-                    end: '2020.08.12 23:00',
-                    detail: ''
-                }
-            ]
+import {getList} from '@/plugins/api.js';
 
 export default {
     components: {
@@ -52,29 +32,51 @@ export default {
         return {
             refreshing: false,
             loading: false,
-            finished: true,
-            records,
+            finished: false,
+            records: [],
+            pager: {
+                page: 1,
+                size: 10
+            }
         }
     },
     methods: {
-        onRefresh() {
+        async getList(params) {
+            let res = await getList(params)
+            return res;
+        },
+        async onRefresh() {
             // 清空列表数据
             this.finished = false;
             this.records = []
             // 重新加载数据
-            this.onLoad();
+            this.pager = {
+                page: 1,
+                size: 10
+            }
+            await this.onLoad();
+            this.refreshing = false;
         },
-        onLoad() {
+        async onLoad() {
             // 将 loading 设置为 true，表示处于加载状态
+            if(this.finished) {
+                return;
+            }
             this.loading = true;
-            this.finished = false;
-            setTimeout(() => {
-                this.records = records;
-                this.refreshing = false;
+            let res = await this.getList(this.pager)
+            if(res.data.code == 0) {
+                let {page, size, records} = res.data.data;
+                let pager = {
+                    page: page + 1,size
+                }
+                this.pager = pager;
+                if(records.length) {
+                    this.records = this.records.concat(records);
+                } else {
+                    this.finished = true;
+                }
                 this.loading = false;
-                this.finished = true;
-            }, 500)
-            
+            }
         },
         onSuccess(data) {
             let {id} = data;
@@ -84,6 +86,9 @@ export default {
                 }
             })
         }
+    },
+    created() {
+        this.onLoad()
     }
 }
 </script>

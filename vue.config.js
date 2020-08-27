@@ -1,5 +1,5 @@
 const path = require('path')
-const mockdata = require('./mock/list.json');
+const mockdata = require('./src/mock/list.json');
 module.exports = {
   pluginOptions: {
     'style-resources-loader': {
