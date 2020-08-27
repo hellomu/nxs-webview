@@ -47,6 +47,7 @@ export default {
     },
     watch:{
         userInfo(val) {
+            console.log('监听到', val)
             if(val) {
                  this.onLoad()
             }
@@ -75,7 +76,7 @@ export default {
                 return;
             }
             this.loading = true;
-            let res = await this.getList(this.pager)
+            let res = await this.getList({userId: this.userInfo.userId, ...this.pager})
             if(res.data.code == 0) {
                 let {page, size, records} = res.data.data;
                 let pager = {

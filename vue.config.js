@@ -1,5 +1,6 @@
 const path = require('path')
-const mockdata = require('./src/mock/list.json');
+const list = require('./src/mock/list.json');
+const userInfo = require('./src/mock/user.json');
 module.exports = {
   pluginOptions: {
     'style-resources-loader': {
@@ -13,10 +14,10 @@ module.exports = {
     host:"0.0.0.0",
     before(app){
       app.get('/goods/list',(req,res,next)=>{
-        res.json(mockdata);
+        res.json(list);
       })
       app.get('/user/info',(req,res,next)=>{
-        res.json(mockdata);
+        res.json(userInfo);
       })
     }
   }
