@@ -1,23 +1,16 @@
 {
     "code": 0,
     "data": {
-        "records": [
-            {
-                "id": "1297649540408676352",
-                "version": null,
-                "tenantId": 0,
-                "appName": "1",
-                "appKey": "1ea419d1c07d4da5a14a99bad4910e08",
-                "secret": "",
-                "pubKey": "",
-                "priKey": "",
-                "state": false
-            }
-        ],
-        "page": 1,
-        "size": 10,
-        "total": 2,
-        "pages": 1
+        "id": "1297649540408676352",
+        "version": null,
+        "tenantId": 0,
+        "appName": "1",
+        "appKey": "1ea419d1c07d4da5a14a99bad4910e08",
+        "secret": "",
+        "pubKey": "",
+        "priKey": "",
+        "state": false,
+        "userId": "1ea419d1c07d4da5a14a99bad4910e08"
     },
     "msg": "操作成功"
 }

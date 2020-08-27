@@ -1,17 +1,36 @@
 <template>
   <div id="app">
-    <!-- <TheHeader></TheHeader> -->
-    <router-view></router-view>
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
+import {mapMutations} from 'vuex';
 import TheHeader from '@/components/TheHeader';
+import {getUserInfo} from '@/plugins/api.js';
 
 export default {
   name: 'app',
   components: {
     TheHeader
+  },
+  data() {
+    return {
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setUserInfoFun: 'setUserInfo'
+    }),
+    async getUserInfo() {
+      let res = await getUserInfo()
+      if(res.data.code == 0) {
+        this.setUserInfoFun(res.data.data)
+      }
+    }
+  },
+  created() {
+    this.getUserInfo()
   }
 }
 </script>

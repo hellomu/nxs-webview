@@ -1,34 +1,36 @@
 <template>
-    <div class="the-ticket">
-        <div class="ticket-main">
-            <div class="ticket-name">
-                {{data.name}}
-            </div>
-            <div class="ticket-money">
-                <div class="ticket-denomination">
-                    <span class="span-strong">{{data.denomination}}元</span> <span>红包</span>
+    <van-skeleton title :row="3" :loading="refreshing">
+        <div class="the-ticket">
+            <div class="ticket-main">
+                <div class="ticket-name">
+                    {{data.name}}
                 </div>
-                <div class="ticket-state">
-                    <!-- <template v-if="data.state">
-                        <span class="span-strong">可使用</span>
-                    </template>
-                    <template v-else> -->
-                        <van-button round type="primary" size="small" @click="onClick(data)" :disabled="loading" :loading="loading" loading-text="正在领取...."> 领取到卡包 </van-button>
-                    <!-- </template> -->
+                <div class="ticket-money">
+                    <div class="ticket-denomination">
+                        <span class="span-strong">{{data.denomination}}元</span> <span>红包</span>
+                    </div>
+                    <div class="ticket-state">
+                        <!-- <template v-if="data.state">
+                            <span class="span-strong">可使用</span>
+                        </template>
+                        <template v-else> -->
+                            <van-button round type="primary" size="small" @click="onClick(data)" :disabled="loading" :loading="loading" loading-text="正在领取...."> 领取到卡包 </van-button>
+                        <!-- </template> -->
+                    </div>
+                </div>
+                <div class="ticket-time">
+                    有效期：{{data.start}}-{{data.end}}
                 </div>
             </div>
-            <div class="ticket-time">
-                有效期：{{data.start}}-{{data.end}}
+            <div class="ticket-detail" v-if="data.detail">
+                <van-collapse v-model="activeNames">
+                    <van-collapse-item title="使用说明" name="2">
+                        {{data.detail}}
+                    </van-collapse-item>
+                </van-collapse>
             </div>
         </div>
-        <div class="ticket-detail" v-if="data.detail">
-            <van-collapse v-model="activeNames">
-                <van-collapse-item title="使用说明" name="2">
-                    {{data.detail}}
-                </van-collapse-item>
-            </van-collapse>
-        </div>
-    </div>
+    </van-skeleton>
 </template>
 
 <script>
@@ -40,7 +42,8 @@ export default {
                 return {
                 }
             }
-        }
+        },
+        refreshing: Boolean
     },
     data() {
         return {

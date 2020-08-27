@@ -12,8 +12,10 @@ module.exports = {
   devServer: {
     host:"0.0.0.0",
     before(app){
-      console.log('app是什么', app)
       app.get('/goods/list',(req,res,next)=>{
+        res.json(mockdata);
+      })
+      app.get('/user/info',(req,res,next)=>{
         res.json(mockdata);
       })
     }

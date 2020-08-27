@@ -12,7 +12,7 @@
                         finished-text="没有更多了"
                         @load="onLoad"
                     >
-                        <TheTicket v-for="(item, i) in records" :key="i" :data="item" @onSuccess="onSuccess"></TheTicket>
+                        <TheTicket v-for="(item, i) in records" :key="i" :data="item" @onSuccess="onSuccess" :refreshing="isLoading"></TheTicket>
                     </van-list>
                 </van-pull-refresh>
             </div>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 import TheTicket from './TheTicket';
 import {getList} from '@/plugins/api.js';
 
@@ -33,10 +34,21 @@ export default {
             refreshing: false,
             loading: false,
             finished: false,
+            isLoading: true, // 骨架屏
             records: [],
             pager: {
                 page: 1,
                 size: 10
+            }
+        }
+    },
+    computed: {
+        ...mapState(['userInfo'])
+    },
+    watch:{
+        userInfo(val) {
+            if(val) {
+                 this.onLoad()
             }
         }
     },
@@ -76,6 +88,7 @@ export default {
                     this.finished = true;
                 }
                 this.loading = false;
+                this.isLoading = false;
             }
         },
         onSuccess(data) {
@@ -86,9 +99,6 @@ export default {
                 }
             })
         }
-    },
-    created() {
-        this.onLoad()
     }
 }
 </script>

@@ -4,7 +4,7 @@ export function getUserInfo(params) {
     return axios({
         method: 'get',
         params,
-        url: ''
+        url: '/user/info'
     })
 }
 export function getList(params) {
