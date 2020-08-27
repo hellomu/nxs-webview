@@ -1,0 +1,80 @@
+// 过滤
+.cmmon-filter {
+	filter: grayscale(100%);
+}
+
+// 行内块元素鼠标浮动展示，离开隐藏
+.common-hover-show {
+	.common-hover-show-el {
+		display: none;
+	}
+	&:hover .common-hover-show-el {
+		display: inline-block;
+	}
+}
+
+// 文字超出省略，需自行定宽
+.common-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.common-break {
+	word-wrap: break-word;
+	word-break: break-all;
+	overflow: hidden;
+}
+
+.common-vertical-middle {
+	vertical-align: middle;
+}
+
+.common-hide {
+	display: none !important;
+}
+.common-show {
+	display: initial !important;
+}
+.common-float-left {
+	float: left;
+}
+.common-float-right {
+	float: right;
+}
+.common-text-right {
+	text-align: right;
+}
+.common-text-center {
+	text-align: center;
+}
+.common-text-left {
+	text-align: left;
+}
+.common-position-h-mid {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+.common-position-v-mid {
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+.common-position-h-v-mid {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.common-clearfix {
+	&:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+}

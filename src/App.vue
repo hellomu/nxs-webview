@@ -1,12 +1,18 @@
 <template>
   <div id="app">
+    <TheHeader></TheHeader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import TheHeader from '@/components/TheHeader';
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    TheHeader
+  }
 }
 </script>
 
@@ -15,9 +21,7 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  font-size: 30px;
-  background: #d9373f;
+  /* font-size: 30px; */
+  /* background: #d9373f; */
 }
 </style>

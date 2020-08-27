@@ -28,11 +28,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.12.2",
     "less-loader": "^7.0.0",
-    "lib-flexible": "0.3.2",
-    "postcss-pxtrem": "3.0.3",
     "style-resources-loader": "^1.3.2",
     "vue-cli-plugin-axios": "0.0.4",
-    "vue-cli-plugin-postcss-pxtrem": "^1.0.6",
     "vue-cli-plugin-style-resources-loader": "~0.1.4",
     "vue-cli-plugin-vant": "^1.0.1",
     "vue-template-compiler": "^2.6.11"
@@ -57,14 +54,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "postcss": {
-    "plugins": {
-      "postcss-pxtrem": {
-        "viewportWidth": 750,
-        "unitPrecision": 2,
-        "minPixelValue": 1
-      }
-    }
-  }
+  ]
 }
