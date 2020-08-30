@@ -19,13 +19,15 @@ const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
   function(config) {
+    config.url = `/open/alipay${config.url}`
+    console.log('入参', config.url)
     // Do something before request is sent
-    if(config.params) {
-      config.params.userId = '123234'
-    }
-    if(config.data) {
-      config.data.userId = '123234'
-    }
+    // if(config.params) {
+    //   config.params.userId = '123234'
+    // }
+    // if(config.data) {
+    //   config.data.userId = '123234'
+    // }
     return config;
   },
   function(error) {
@@ -41,6 +43,7 @@ _axios.interceptors.response.use(
     return response;
   },
   function(error) {
+    console.log(1111111111, error.response)
     if(error.response) {
       Dialog.confirm({
         // title: '标题',
@@ -79,4 +82,4 @@ Plugin.install = function(Vue) {
 
 Vue.use(Plugin)
 
-export default Plugin;
+export default _axios;

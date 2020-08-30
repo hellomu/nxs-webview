@@ -41,14 +41,22 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "plugin:vue/recommended"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
     "rules": {
-      "vue/no-unused-components": "off"
+      "vue/no-unused-components": "off",
+      "vue/no-async-in-computed-properties": "off",
+      "vue/no-parsing-error": "warn",
+      "vue/no-unused-vars": "off",
+      "vue/no-multi-spaces": "off",
+      "vue/no-spaces-around-equal-signs-in-attribute": "off",
+      "vue/html-indent": "off",
+      "vue/html-self-closing": "off",
+      "vue/name-property-casing": "off",
+      "vue/order-in-components": "off"
     }
   },
   "browserslist": [

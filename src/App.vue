@@ -8,6 +8,7 @@
 import {mapMutations} from 'vuex';
 import TheHeader from '@/components/TheHeader';
 import {getUserInfo} from '@/plugins/api.js';
+import {getQueryVariable, getAuthCode} from '@/common/utils.js';
 
 export default {
   name: 'app',
@@ -23,9 +24,19 @@ export default {
       setUserInfoFun: 'setUserInfo'
     }),
     async getUserInfo() {
-      let res = await getUserInfo()
-      if(res.data.code == 0) {
-        this.setUserInfoFun(res.data.data)
+      let auth_code = getQueryVariable('auth_code');
+      if(!auth_code) {
+        getAuthCode()
+      }
+      try {
+        let res = await getUserInfo({auth_code})
+        if(res.data.code == 0) {
+          this.setUserInfoFun(res.data.data)
+        } else {
+          getAuthCode()
+        }
+      } catch (error) {
+          getAuthCode()
       }
     }
   },

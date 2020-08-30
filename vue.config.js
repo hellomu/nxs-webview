@@ -12,6 +12,15 @@ module.exports = {
   },
   devServer: {
     host:"0.0.0.0",
+		proxy: {
+			"/": {
+				target: "https://white.natapp4.cc",
+				changeOrigin: true,
+				pathRewrite: {
+					"^/": ""
+				}
+			}
+		},
     before(app){
       app.get('/goods/list',(req,res,next)=>{
         res.json(list);

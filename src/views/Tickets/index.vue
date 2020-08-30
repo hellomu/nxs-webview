@@ -4,7 +4,7 @@
             <div class="logo">
                 <img class="common-position-h-v-mid" src="../../assets/images/logo-square.png" alt="">
             </div>
-            <div class="list">
+            <div class="list" v-if="userInfo">
                 <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
                     <van-list
                         v-model="loading"
@@ -47,7 +47,6 @@ export default {
     },
     watch:{
         userInfo(val) {
-            console.log('监听到', val)
             if(val) {
                  this.onLoad()
             }

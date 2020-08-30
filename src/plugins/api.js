@@ -1,16 +1,16 @@
-import axios from 'axios';
+import axios from './axios';
 
 export function getUserInfo(params) {
     return axios({
         method: 'get',
         params,
-        url: '/user/info'
+        url: '/user_info_share'
     })
 }
 export function getList(params) {
     return axios({
         method: 'get',
         params,
-        url: '/goods/list'
+        url: '/marketing/voucher/record'
     })
 }
