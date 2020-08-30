@@ -5,22 +5,22 @@ import axios from "axios";
 import { Dialog } from 'vant';
 
 // Full config:  https://github.com/axios/axios#request-config
-// axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
+axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
+  baseURL: process.env.baseURL || process.env.VUE_APP_apiUrl || ""
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);
-
+console.log(1111111111, _axios, config)
 _axios.interceptors.request.use(
   function(config) {
+    console.log(2222222222222, config, process.env.VUE_APP_apiUrl)
     config.url = `/open/alipay${config.url}`
-    console.log('入参', config.url)
     // Do something before request is sent
     // if(config.params) {
     //   config.params.userId = '123234'
@@ -43,7 +43,6 @@ _axios.interceptors.response.use(
     return response;
   },
   function(error) {
-    console.log(1111111111, error.response)
     if(error.response) {
       Dialog.confirm({
         // title: '标题',

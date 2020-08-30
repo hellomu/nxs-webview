@@ -16,8 +16,7 @@ export default {
     TheHeader
   },
   data() {
-    return {
-    }
+    return {}
   },
   methods: {
     ...mapMutations({

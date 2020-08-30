@@ -5,14 +5,19 @@ import Tickets from '../views/Tickets/index.vue'
 Vue.use(VueRouter)
 
   const routes = [
+    {
+      path: '/coupon/',
+      redirect: '/coupon/Tickets'
+    },
   {
-    path: '/',
+    path: '/coupon/Tickets',
     name: 'Tickets',
     component: Tickets
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

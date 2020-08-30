@@ -46,10 +46,13 @@ export default {
         ...mapState(['userInfo'])
     },
     watch:{
-        userInfo(val) {
-            if(val) {
-                 this.onLoad()
-            }
+        userInfo: {
+            handler(val, oldVal) {
+                if(val) {
+                    this.onLoad()
+                }
+            },
+            deep: true
         }
     },
     methods: {

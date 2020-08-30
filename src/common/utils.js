@@ -7,6 +7,7 @@ export function getQueryVariable(variable, url) {
 }
 
 export function getAuthCode(url) {
-    let href = url || `https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2021001181667619&scope=auth_user&redirect_uri=${document.URL.split('?')[0]}`
+	let href = url || `https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2021001181667619&scope=auth_user&redirect_uri=${document.URL.split('?')[0]}`
+	// console.log(6666, encodeURIComponent(href))
     window.open(href, "_self");
 }

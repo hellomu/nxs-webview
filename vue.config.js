@@ -2,6 +2,15 @@ const path = require('path')
 const list = require('./src/mock/list.json');
 const userInfo = require('./src/mock/user.json');
 module.exports = {
+  chainWebpack: config => {
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].title= '我的消费券'
+        return args
+      })
+  },
+  publicPath: process.env.NODE_ENV === 'development' ? './': '/',
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
@@ -18,7 +27,13 @@ module.exports = {
 				changeOrigin: true,
 				pathRewrite: {
 					"^/": ""
-				}
+				},
+        bypass: function(req, res, proxyOptions) {
+          if (req.headers.accept.indexOf("html") !== -1) {
+            console.log("Skipping proxy for browser request.");
+            return "/public/index.html";
+          }
+        }
 			}
 		},
     before(app){
